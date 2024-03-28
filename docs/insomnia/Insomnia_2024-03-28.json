@@ -1,0 +1,168 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2024-03-28T18:41:48.702Z",
+  "__export_source": "insomnia.desktop.app:v8.6.1",
+  "resources": [
+    {
+      "_id": "req_18ebc6b9b842465390053585c90f1475",
+      "parentId": "fld_9394f5aacb334d65959ac6b3b7747a8d",
+      "modified": 1711650908545,
+      "created": 1711650815358,
+      "url": "http://localhost:3001/auth/signin",
+      "name": "signin",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/x-www-form-urlencoded",
+        "params": [
+          {
+            "id": "pair_c5bd8fe8a1c94f09aac375285a91a08f",
+            "name": "email",
+            "value": "skywalker@gmail.aaaaaaa",
+            "description": ""
+          },
+          {
+            "id": "pair_d46bfa001d5d4d7184b9226601f7b6cd",
+            "name": "password",
+            "value": "skywalker",
+            "description": ""
+          }
+        ]
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.5"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711650871537,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_9394f5aacb334d65959ac6b3b7747a8d",
+      "parentId": "wrk_scratchpad",
+      "modified": 1711650863451,
+      "created": 1711650863451,
+      "name": "auth",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1711650863451,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_scratchpad",
+      "parentId": null,
+      "modified": 1701371845590,
+      "created": 1701371845590,
+      "name": "Scratch Pad",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_7a9a168748e54f66b0871e9ddd47c35a",
+      "parentId": "fld_9394f5aacb334d65959ac6b3b7747a8d",
+      "modified": 1711651066266,
+      "created": 1711650804320,
+      "url": "http://localhost:3001/auth/signup",
+      "name": "signup",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/x-www-form-urlencoded",
+        "params": [
+          {
+            "id": "pair_a32b6fed50164972b5b470ab42085b19",
+            "name": "username",
+            "value": "Skywalker",
+            "description": ""
+          },
+          {
+            "id": "pair_c5bd8fe8a1c94f09aac375285a91a08f",
+            "name": "email",
+            "value": "skywalker@gmail.aaaaaaaaaaa",
+            "description": ""
+          },
+          {
+            "id": "pair_d46bfa001d5d4d7184b9226601f7b6cd",
+            "name": "password",
+            "value": "skywalker",
+            "description": ""
+          },
+          {
+            "id": "pair_0749efc0c9dd454a9d36113fec6df554",
+            "name": "firstName",
+            "value": "Sky",
+            "description": ""
+          },
+          {
+            "id": "pair_d4411d57d8da4f8c82911cb2947f28df",
+            "name": "lastName",
+            "value": "Walker",
+            "description": ""
+          }
+        ]
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.5"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711650871437,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_99d30891da4bdcebc63947a8fc17f076de878684",
+      "parentId": "wrk_scratchpad",
+      "modified": 1701371854860,
+      "created": 1701371854860,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1701371854860,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_99d30891da4bdcebc63947a8fc17f076de878684",
+      "parentId": "wrk_scratchpad",
+      "modified": 1701371854863,
+      "created": 1701371854863,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    }
+  ]
+}
