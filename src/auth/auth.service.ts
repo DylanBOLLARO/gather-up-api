@@ -22,13 +22,13 @@ export class AuthService {
 			}
 		});
 
-		if (!user || !user.hashedRt)
+		if (!user || !user.hashed_rt)
 			throw new ConflictException({
 				statusCode: HttpStatus.FORBIDDEN,
 				message: "Access Denied"
 			});
 
-		const rtMatches = await bcrypt.compare(rt, user.hashedRt);
+		const rtMatches = await bcrypt.compare(rt, user.hashed_rt);
 
 		if (!rtMatches)
 			throw new ConflictException({
@@ -50,7 +50,7 @@ export class AuthService {
 				id: userId
 			},
 			data: {
-				hashedRt: hashPassword
+				hashed_rt: hashPassword
 			}
 		});
 	}
@@ -103,7 +103,7 @@ export class AuthService {
 		});
 
 		delete userCreated.password;
-		delete userCreated.hashedRt;
+		delete userCreated.hashed_rt;
 
 		return userCreated;
 	}
@@ -163,12 +163,12 @@ export class AuthService {
 		await this.prismaService.user.updateMany({
 			where: {
 				id: userId,
-				hashedRt: {
+				hashed_rt: {
 					not: null
 				}
 			},
 			data: {
-				hashedRt: null
+				hashed_rt: null
 			}
 		});
 		return true;

@@ -40,3 +40,4 @@ migrations
 data
 postgres
 pgadmin_data
+package-lock.json

@@ -13,12 +13,12 @@ export class UserService {
 			where: role ? { role } : undefined,
 			select: {
 				id: true,
-				firstName: true,
-				lastName: true,
+				firstname: true,
+				lastname: true,
 				username: true,
 				email: true,
-				createdAt: true,
-				updatedAt: true,
+				created_at: true,
+				updated_at: true,
 				role: true
 			}
 		});
@@ -31,12 +31,12 @@ export class UserService {
 			},
 			select: {
 				id: true,
-				firstName: true,
-				lastName: true,
+				firstname: true,
+				lastname: true,
 				username: true,
 				email: true,
-				createdAt: true,
-				updatedAt: true,
+				created_at: true,
+				updated_at: true,
 				role: true
 			}
 		});
@@ -50,12 +50,12 @@ export class UserService {
 			data: updateEmployee,
 			select: {
 				id: true,
-				firstName: true,
-				lastName: true,
+				firstname: true,
+				lastname: true,
 				username: true,
 				email: true,
-				createdAt: true,
-				updatedAt: true,
+				created_at: true,
+				updated_at: true,
 				role: true
 			}
 		});
@@ -68,12 +68,12 @@ export class UserService {
 			},
 			select: {
 				id: true,
-				firstName: true,
-				lastName: true,
+				firstname: true,
+				lastname: true,
 				username: true,
 				email: true,
-				createdAt: true,
-				updatedAt: true,
+				created_at: true,
+				updated_at: true,
 				role: true
 			}
 		});

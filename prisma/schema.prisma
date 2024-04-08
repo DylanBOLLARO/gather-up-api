@@ -7,17 +7,36 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Event {
+  id                Int       @id @default(autoincrement())
+  title             String    @db.VarChar(50)
+  user_id           Int
+  is_public         Boolean   @default(false)
+  created_at        DateTime  @default(now())
+  updated_at        DateTime  @updatedAt
+  start_at          DateTime?
+  end_at            DateTime?
+  address           String?
+  description       String?
+  duration          Int?
+  number_of_persons Int?
+  user              User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("events")
+}
+
 model User {
-  id        Int      @id @default(autoincrement())
-  firstName String?  @db.VarChar(255)
-  lastName  String?  @db.VarChar(255)
-  username  String   @db.VarChar(55)
-  email     String   @unique @db.VarChar(255)
-  password  String   @db.VarChar(255)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  role      Role     @default(GUEST)
-  hashedRt  String?
+  id         Int      @id @default(autoincrement())
+  firstname  String   @db.VarChar(255)
+  lastname   String   @db.VarChar(255)
+  username   String   @db.VarChar(55)
+  email      String   @unique @db.VarChar(255)
+  password   String   @db.VarChar(255)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  role       Role     @default(GUEST)
+  hashed_rt  String?
+  event      Event[]
 
   @@map("users")
 }

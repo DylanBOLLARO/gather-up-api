@@ -6,13 +6,15 @@ import { AtGuard } from "./common/guards";
 import { PrismaModule } from "./prisma/prisma.module";
 import { RequestLoggerMiddleware } from "middleware/logger";
 import { UserModule } from "./user/user.module";
+import { EventModule } from "./event/event.module";
 
 @Module({
 	imports: [
 		ConfigModule.forRoot({ isGlobal: true }),
 		PrismaModule,
 		UserModule,
-		AuthModule
+		AuthModule,
+		EventModule
 	],
 	controllers: [],
 	providers: [

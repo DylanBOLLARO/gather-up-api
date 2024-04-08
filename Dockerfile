@@ -9,8 +9,6 @@ COPY prisma ./prisma/
 
 RUN npm install
 
-RUN npx prisma generate
-
 COPY . .
 
 RUN npm run build
@@ -28,9 +26,5 @@ COPY package*.json ./
 COPY prisma ./prisma/
 
 RUN npm install --only=production
-
-RUN npx prisma generate
-
-EXPOSE 3001
 
 CMD [ "npm", "run", "start:prod" ]

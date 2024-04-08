@@ -4,39 +4,32 @@ services:
         container_name: postgres
         image: postgres:latest
         restart: unless-stopped
-        environment:
-            POSTGRES_DB: ${POSTGRES_DB}
-            POSTGRES_USER: ${POSTGRES_USER}
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-        volumes:
-            - ./postgres:/var/lib/postgresql/data
+        env_file:
+            - .env
         ports:
             - 16987:5432
-
-    # nestjs:
-    #     build:
-    #         context: .
-    #     container_name: nestjs
-    #     restart: unless-stopped
-    #     ports:
-    #         - 3001:3001
-    #     depends_on:
-    #         - postgres
-    #     environment:
-    #         DATABASE_URL: ${DATABASE_URL}
-    #         AT_SECRET: ${AT_SECRET}
-    #         RT_SECRET: ${RT_SECRET}
-
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+    nestjs:
+        build:
+            context: .
+        container_name: nestjs
+        restart: unless-stopped
+        ports:
+            - 8080:3000
+        env_file:
+            - .env
+        depends_on:
+            - postgres
     pgadmin:
         container_name: pgadmin
-        image: dpage/pgadmin4
+        image: dpage/pgadmin4:latest
         restart: unless-stopped
-        environment:
-            - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
-            - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+        env_file:
+            - .env
         ports:
-            - 16543:80
-        volumes:
-            - ./pgadmin_data:/var/lib/pgadmin/data
-        # depends_on:
-        #     - nestjs
+            - 16543:5050
+        depends_on:
+            - nestjs
+volumes:
+    postgres_data:
