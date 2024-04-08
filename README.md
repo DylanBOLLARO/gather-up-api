@@ -62,3 +62,21 @@ A simple request to create a user
 -   **Request Body Parameters:**
     -   `email`: User's email. _(Type: String)_
     -   `password`: User's password. _(Type: String)_
+
+
+## DEBUG -- Docker hard reset
+
+Stop all containers
+```bash
+docker stop $(docker ps -aq)
+```
+
+Remove all containers
+```bash
+docker rm $(docker ps -aq)
+```
+
+Remove all volumes
+```bash
+docker volume rm $(docker volume ls -q)
+```

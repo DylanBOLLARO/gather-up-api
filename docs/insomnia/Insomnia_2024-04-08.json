@@ -1,0 +1,401 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2024-04-08T20:59:56.595Z",
+  "__export_source": "insomnia.desktop.app:v8.6.1",
+  "resources": [
+    {
+      "_id": "req_9b17f37bca1249d2ba658014de0ddec4",
+      "parentId": "fld_5c59f1fda4a946dab4a154df29460423",
+      "modified": 1712609940043,
+      "created": 1711923420449,
+      "url": "http://{{ _.BASE_URL }}:{{ _.PORT }}{{ _.ROUTE_EVENTS }}",
+      "name": "find all",
+      "description": "",
+      "method": "GET",
+      "body": {
+        "mimeType": "application/x-www-form-urlencoded",
+        "params": [
+          {
+            "id": "pair_1b6166cd08d44751a06f2a88feb5dd3e",
+            "name": "",
+            "value": "",
+            "description": ""
+          }
+        ]
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.6.1"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711923425571,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_5c59f1fda4a946dab4a154df29460423",
+      "parentId": "wrk_scratchpad",
+      "modified": 1711923410683,
+      "created": 1711923410683,
+      "name": "event",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1711923410683,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_scratchpad",
+      "parentId": null,
+      "modified": 1701371845590,
+      "created": 1701371845590,
+      "name": "Scratch Pad",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_3a9227f5087e4dd982be383d7e936f07",
+      "parentId": "fld_5c59f1fda4a946dab4a154df29460423",
+      "modified": 1712609962843,
+      "created": 1712251806951,
+      "url": "http://{{ _.BASE_URL }}:{{ _.PORT }}{{ _.ROUTE_EVENTS }}/2",
+      "name": "find one",
+      "description": "",
+      "method": "GET",
+      "body": {
+        "mimeType": "application/x-www-form-urlencoded",
+        "params": []
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.6.1"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711855287062.5,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_50c4e73eafd44414a144634030135553",
+      "parentId": "fld_5c59f1fda4a946dab4a154df29460423",
+      "modified": 1712609945923,
+      "created": 1712252138733,
+      "url": "http://{{ _.BASE_URL }}:{{ _.PORT }}{{ _.ROUTE_EVENTS }}/1",
+      "name": "Delete one",
+      "description": "",
+      "method": "DELETE",
+      "body": {
+        "mimeType": "application/x-www-form-urlencoded",
+        "params": [
+          {
+            "id": "pair_261ba3509b734ea2b9098d76d11e8897",
+            "name": "id",
+            "value": "47",
+            "description": ""
+          }
+        ]
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.6.1"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidkBnbWFpbC5jb20iLCJpYXQiOjE3MTI2MDk4MzcsImV4cCI6MTcxMjYxMDczN30.dR-WR_7W17FTuEwncRUHXCbD-A3kj9vhhcbpbz5LQcY"
+      },
+      "metaSortKey": -1711821217808.25,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_8c0c9c88c4cf4639bf7296cb03cfc2f0",
+      "parentId": "fld_5c59f1fda4a946dab4a154df29460423",
+      "modified": 1712609949369,
+      "created": 1712092232547,
+      "url": "http://{{ _.BASE_URL }}:{{ _.PORT }}{{ _.ROUTE_EVENTS }}",
+      "name": "create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/x-www-form-urlencoded",
+        "params": [
+          {
+            "id": "pair_2f80535711e54686ae05417b1ac4070c",
+            "name": "title",
+            "value": "\"Runnung\"",
+            "description": ""
+          },
+          {
+            "id": "pair_82ba2083d59f43d7bdd976b3c63af33f",
+            "name": "description",
+            "value": "Bord de mer",
+            "description": ""
+          },
+          {
+            "id": "pair_0b8faddb9ff8475ba7dd09c4371262f0",
+            "name": "user_id",
+            "value": "1",
+            "description": ""
+          },
+          {
+            "id": "pair_b0436a00b4b446f3948288bbe19fa2a5",
+            "name": "is_public",
+            "value": "true",
+            "description": ""
+          },
+          {
+            "id": "pair_fded9df4b16b4768a9724f4307add39f",
+            "name": "duration",
+            "value": "7200",
+            "description": ""
+          },
+          {
+            "id": "pair_12bcd8a56663440aa71e2d050d0fdf7c",
+            "name": "number_of_persons",
+            "value": "3",
+            "description": ""
+          },
+          {
+            "id": "pair_261ba3509b734ea2b9098d76d11e8897",
+            "name": "start_at",
+            "value": "2024-04-24T02:00:00.000Z",
+            "description": ""
+          }
+        ]
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.6.1"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidkBnbWFpbC5jb20iLCJpYXQiOjE3MTI2MDk4MzcsImV4cCI6MTcxMjYxMDczN30.dR-WR_7W17FTuEwncRUHXCbD-A3kj9vhhcbpbz5LQcY"
+      },
+      "metaSortKey": -1711787148554,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_18ebc6b9b842465390053585c90f1475",
+      "parentId": "fld_9394f5aacb334d65959ac6b3b7747a8d",
+      "modified": 1712609734314,
+      "created": 1711650815358,
+      "url": "http://{{ _.BASE_URL }}:{{ _.PORT }}{{ _.ROUTE_SIGNIN }}",
+      "name": "signin",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/x-www-form-urlencoded",
+        "params": [
+          {
+            "id": "pair_c5bd8fe8a1c94f09aac375285a91a08f",
+            "name": "email",
+            "value": "v@gmail.com",
+            "description": ""
+          },
+          {
+            "id": "pair_d46bfa001d5d4d7184b9226601f7b6cd",
+            "name": "password",
+            "value": "vipalisk",
+            "description": ""
+          }
+        ]
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.5"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711650871537,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_9394f5aacb334d65959ac6b3b7747a8d",
+      "parentId": "wrk_scratchpad",
+      "modified": 1711650863451,
+      "created": 1711650863451,
+      "name": "auth",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1711650863451,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_7a9a168748e54f66b0871e9ddd47c35a",
+      "parentId": "fld_9394f5aacb334d65959ac6b3b7747a8d",
+      "modified": 1712609728226,
+      "created": 1711650804320,
+      "url": "http://{{ _.BASE_URL }}:{{ _.PORT }}{{ _.ROUTE_SIGNUP }}",
+      "name": "signup",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/x-www-form-urlencoded",
+        "params": [
+          {
+            "id": "pair_a32b6fed50164972b5b470ab42085b19",
+            "name": "username",
+            "value": "vipalisk",
+            "description": ""
+          },
+          {
+            "id": "pair_c5bd8fe8a1c94f09aac375285a91a08f",
+            "name": "email",
+            "value": "v@gmail.com",
+            "description": ""
+          },
+          {
+            "id": "pair_d46bfa001d5d4d7184b9226601f7b6cd",
+            "name": "password",
+            "value": "vipalisk",
+            "description": ""
+          },
+          {
+            "id": "pair_0749efc0c9dd454a9d36113fec6df554",
+            "name": "firstname",
+            "value": "vipalisk",
+            "description": ""
+          },
+          {
+            "id": "pair_d4411d57d8da4f8c82911cb2947f28df",
+            "name": "lastname",
+            "value": "vipalisk",
+            "description": ""
+          }
+        ]
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.5"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711650871437,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_99d30891da4bdcebc63947a8fc17f076de878684",
+      "parentId": "wrk_scratchpad",
+      "modified": 1712609924155,
+      "created": 1701371854860,
+      "name": "Base Environment",
+      "data": {
+        "BASE_URL": "127.0.0.1",
+        "PORT": "8080",
+        "ROUTE_SIGNUP": "/api/v1/auth/signup",
+        "ROUTE_SIGNIN": "/api/v1/auth/signin",
+        "ROUTE_EVENTS": "/api/v1/event"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "BASE_URL",
+          "PORT",
+          "ROUTE_SIGNUP",
+          "ROUTE_SIGNIN",
+          "ROUTE_EVENTS"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1701371854860,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_99d30891da4bdcebc63947a8fc17f076de878684",
+      "parentId": "wrk_scratchpad",
+      "modified": 1701371854863,
+      "created": 1701371854863,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    }
+  ]
+}
