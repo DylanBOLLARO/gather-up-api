@@ -1,3 +1,7 @@
+## OpenAPI
+
+http://localhost:8080/api/v1/description
+
 ## Setup PROD
 
 Installing all packages
@@ -39,29 +43,6 @@ All containers are UP (red) and the port to access the backend is localhost:8080
 A simple request to create a user
 
 ![signup](/docs/signup.png)
-
-## Endpoints
-
-### Sign Up
-
--   **URL:** `/api/v1/auth/signup`
--   **Method:** `POST`
--   **Description:** Endpoint for a user to sign up.
--   **Request Body Parameters:**
-    -   `username`: User's username. _(Type: String)_
-    -   `email`: User's email. _(Type: String)_
-    -   `password`: User's password. _(Type: String)_
-    -   `firstname`: User's first name. _(Type: String)_
-    -   `lastname`: User's last name. _(Type: String)_
-
-### Sign In
-
--   **URL:** `/api/v1/auth/signin`
--   **Method:** `POST`
--   **Description:** Endpoint for a user to sign in.
--   **Request Body Parameters:**
-    -   `email`: User's email. _(Type: String)_
-    -   `password`: User's password. _(Type: String)_
 
 ## DEBUG -- Docker hard reset
 

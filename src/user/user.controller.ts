@@ -1,25 +1,15 @@
-import {
-	Controller,
-	Get,
-	Post,
-	Body,
-	Patch,
-	Param,
-	Delete,
-	Query,
-	Req,
-	ConflictException,
-	HttpStatus
-} from "@nestjs/common";
+import { Controller, Get, Param, Delete, Query } from "@nestjs/common";
 import { UserService } from "./user.service";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UpdateUserDto } from "./dto/update-user.dto";
 import { Role } from "@prisma/client";
-import { Request } from "express";
+import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+
+@ApiTags("user")
 @Controller("user")
 export class UserController {
 	constructor(private readonly userService: UserService) {}
 
+	@ApiOperation({ summary: "Create cat" })
+	@ApiResponse({ status: 402, description: "Forbidden." })
 	@Get()
 	findAll(@Query("role") role?: Role) {
 		return this.userService.findAll(role);

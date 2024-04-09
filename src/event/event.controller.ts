@@ -12,7 +12,8 @@ import { EventService } from "./event.service";
 import { CreateEventDto } from "./dto/create.event.dto";
 import { Public } from "src/common/decorators";
 import { CreateEventValidationPipe } from "./pipe/create.event.pipe";
-
+import { ApiTags } from "@nestjs/swagger";
+@ApiTags("event")
 @Controller("event")
 export class EventController {
 	constructor(private readonly eventService: EventService) {}

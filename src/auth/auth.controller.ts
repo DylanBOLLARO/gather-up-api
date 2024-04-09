@@ -12,7 +12,8 @@ import { GetCurrentUser, GetCurrentUserId, Public } from "../common/decorators";
 import { SignupAuthDto } from "./dto";
 import { SigninAuthDto } from "./dto/signin-auth.dto";
 import { AtGuard, RtGuard } from "src/common/guards";
-
+import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+@ApiTags("auth")
 @Controller("auth")
 export class AuthController {
 	constructor(private authService: AuthService) {}
@@ -20,6 +21,7 @@ export class AuthController {
 	@Public()
 	@Post("signup")
 	@HttpCode(HttpStatus.CREATED)
+	@ApiOperation({ summary: "Creating a new user" })
 	signup(@Body() signup: SignupAuthDto) {
 		console.log("signup");
 		return this.authService.signup(signup);
@@ -28,6 +30,8 @@ export class AuthController {
 	@Public()
 	@Post("signin")
 	@HttpCode(HttpStatus.OK)
+	@ApiOperation({ summary: "Login to an account" })
+	@ApiResponse({ status: 401, description: "Check connection credentials" })
 	signin(@Body() signin: SigninAuthDto) {
 		console.log("signin");
 		return this.authService.signin(signin);
