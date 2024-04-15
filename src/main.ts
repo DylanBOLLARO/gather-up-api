@@ -15,12 +15,15 @@ async function bootstrap() {
 	app.useGlobalPipes(new ValidationPipe());
 
 	initSwagger(app);
-	await app.listen(3000);
+	await app.listen(8080);
 }
 bootstrap();
 
 const initSwagger = (app: INestApplication): void => {
-	const config = new DocumentBuilder().setTitle("Gether-Up API").build();
+	const config = new DocumentBuilder()
+		.setTitle("Gether-Up API")
+		.addBearerAuth()
+		.build();
 	const document = SwaggerModule.createDocument(app, config);
 	SwaggerModule.setup("api/v1/description", app, document);
 };

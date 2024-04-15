@@ -1,63 +1,55 @@
-import {
-	Body,
-	Controller,
-	Get,
-	HttpCode,
-	HttpStatus,
-	Post,
-	UseGuards
-} from "@nestjs/common";
+import { Body, Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
 import { AuthService } from "./auth.service";
-import { GetCurrentUser, GetCurrentUserId, Public } from "../common/decorators";
-import { SignupAuthDto } from "./dto";
-import { SigninAuthDto } from "./dto/signin-auth.dto";
-import { AtGuard, RtGuard } from "src/common/guards";
+import { Public } from "../common/decorators";
+import { SignupDTO } from "./dto";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { LoginDTO } from "./dto/login.dto";
+import { UserDto } from "src/user/dto/user.dto";
 @ApiTags("auth")
 @Controller("auth")
 export class AuthController {
-	constructor(private authService: AuthService) {}
+	constructor(private readonly authService: AuthService) {}
 
 	@Public()
 	@Post("signup")
 	@HttpCode(HttpStatus.CREATED)
 	@ApiOperation({ summary: "Creating a new user" })
-	signup(@Body() signup: SignupAuthDto) {
-		console.log("signup");
-		return this.authService.signup(signup);
+	@ApiResponse({
+		status: HttpStatus.CREATED,
+		description:
+			"Code 201 indicates that the account has been created, don't return anything"
+	})
+	@ApiResponse({
+		status: HttpStatus.CONFLICT,
+		description:
+			"The provided email address is already in use. Please use a different email for registration."
+	})
+	@ApiResponse({
+		status: HttpStatus.BAD_REQUEST,
+		description: "Fields are missing to create the user"
+	})
+	signup(@Body() signupDTO: SignupDTO) {
+		return this.authService.signup(signupDTO);
 	}
 
 	@Public()
-	@Post("signin")
+	@Post("login")
 	@HttpCode(HttpStatus.OK)
-	@ApiOperation({ summary: "Login to an account" })
-	@ApiResponse({ status: 401, description: "Check connection credentials" })
-	signin(@Body() signin: SigninAuthDto) {
-		console.log("signin");
-		return this.authService.signin(signin);
-	}
-
-	@UseGuards(AtGuard)
-	@Post("get-connected-user-id")
-	@HttpCode(HttpStatus.OK)
-	verifyToken(@GetCurrentUser() user: any) {
-		return user;
-	}
-
-	@Post("logout")
-	@HttpCode(HttpStatus.OK)
-	logout(@GetCurrentUserId() userId: number): Promise<boolean> {
-		return this.authService.logout(userId);
-	}
-
-	@Public()
-	@UseGuards(RtGuard)
-	@Post("refresh")
-	@HttpCode(HttpStatus.OK)
-	refreshTokens(
-		@GetCurrentUserId() userId: number,
-		@GetCurrentUser("refreshToken") refreshToken: string
+	@ApiOperation({
+		summary: "Recover access_token and refresh_token with login credentials"
+	})
+	@ApiResponse({
+		status: HttpStatus.OK,
+		description: "Returns JSON with access_token and refresh_token"
+	})
+	@ApiResponse({
+		status: HttpStatus.FORBIDDEN,
+		description: "Access Denied : Login credentials are not valid"
+	})
+	login(
+		@Body()
+		loginDTO: LoginDTO
 	) {
-		return this.authService.refreshTokens(userId, refreshToken);
+		return this.authService.login(loginDTO);
 	}
 }

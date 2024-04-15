@@ -1,11 +1,20 @@
-import { ConflictException, HttpStatus, Injectable } from "@nestjs/common";
+import {
+	ConflictException,
+	Get,
+	HttpCode,
+	HttpStatus,
+	Injectable,
+	UseGuards
+} from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import * as bcrypt from "bcrypt";
 import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
 import { JwtPayload, Tokens } from "./types";
-import { SignupAuthDto } from "./dto";
-import { SigninAuthDto } from "./dto/signin-auth.dto";
+import { LoginDTO } from "./dto/login.dto";
+import { AtGuard } from "src/common/guards";
+import { GetCurrentUser } from "src/common/decorators";
+import { SignupDTO } from "./dto";
 
 @Injectable()
 export class AuthService {
@@ -78,7 +87,7 @@ export class AuthService {
 		};
 	}
 
-	async signup(signup: SignupAuthDto) {
+	async signup(signup: SignupDTO) {
 		const { email, password } = signup;
 		const hashPassword = bcrypt.hashSync(password, 10);
 
@@ -95,17 +104,39 @@ export class AuthService {
 					"The provided email address is already in use. Please use a different email for registration."
 			});
 
-		const userCreated = await this.prismaService.user.create({
+		await this.prismaService.user.create({
 			data: {
 				...signup,
 				password: hashPassword
 			}
 		});
+	}
 
-		delete userCreated.password;
-		delete userCreated.hashed_rt;
+	// NEW
+	async login(LoginDTO: LoginDTO): Promise<any> {
+		const { email, password } = LoginDTO;
 
-		return userCreated;
+		const user = await this.prismaService.user.findUnique({
+			where: {
+				email
+			}
+		});
+
+		if (!user)
+			throw new ConflictException({
+				statusCode: HttpStatus.FORBIDDEN,
+				message: "Access Denied"
+			});
+
+		const passwordMatches = await bcrypt.compare(password, user.password);
+
+		if (!passwordMatches)
+			throw new ConflictException({
+				statusCode: HttpStatus.FORBIDDEN,
+				message: "Access Denied"
+			});
+
+		return await this.getTokens(user.id, user.email);
 	}
 
 	async signToken(
@@ -128,7 +159,7 @@ export class AuthService {
 		};
 	}
 
-	async signin(signinAuth: SigninAuthDto) {
+	async signin(signinAuth: SignupDTO) {
 		const { email, password } = signinAuth;
 
 		const user = await this.prismaService.user.findUnique({
@@ -172,5 +203,22 @@ export class AuthService {
 			}
 		});
 		return true;
+	}
+
+	@Get()
+	@UseGuards(AtGuard)
+	@HttpCode(HttpStatus.OK)
+	async getMe(@GetCurrentUser() currentUserJwt: any) {
+		const { email } = currentUserJwt;
+
+		const currentUser = await this.prismaService.user.findUniqueOrThrow({
+			where: {
+				email
+			}
+		});
+
+		delete currentUser.password;
+
+		return currentUser;
 	}
 }

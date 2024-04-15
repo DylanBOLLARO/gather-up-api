@@ -1,32 +1,53 @@
-import { Controller, Get, Param, Delete, Query } from "@nestjs/common";
+import {
+	Controller,
+	Get,
+	UseGuards,
+	HttpCode,
+	HttpStatus
+} from "@nestjs/common";
 import { UserService } from "./user.service";
-import { Role } from "@prisma/client";
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import {
+	ApiBearerAuth,
+	ApiOperation,
+	ApiResponse,
+	ApiTags
+} from "@nestjs/swagger";
+import { PrismaService } from "src/prisma/prisma.service";
+import { AtGuard } from "src/common/guards";
+import { GetCurrentUser } from "src/common/decorators";
+import { UserDto } from "./dto/user.dto";
 
 @ApiTags("user")
 @Controller("user")
 export class UserController {
-	constructor(private readonly userService: UserService) {}
+	constructor(
+		private readonly userService: UserService,
+		private readonly prismaService: PrismaService
+	) {}
 
-	@ApiOperation({ summary: "Create cat" })
-	@ApiResponse({ status: 402, description: "Forbidden." })
-	@Get()
-	findAll(@Query("role") role?: Role) {
-		return this.userService.findAll(role);
-	}
+	@Get("me")
+	@UseGuards(AtGuard)
+	@HttpCode(HttpStatus.OK)
+	@ApiBearerAuth()
+	@ApiOperation({ summary: "Recover user data using jwt" })
+	@ApiResponse({
+		status: HttpStatus.OK,
+		type: UserDto
+	})
+	@ApiResponse({
+		status: HttpStatus.UNAUTHORIZED,
+		description: "Unauthorized : The access token used is not valid"
+	})
+	async verifyToken(@GetCurrentUser() currentUserJwt: any) {
+		const { sub: id } = currentUserJwt;
 
-	@Get(":id")
-	findOne(@Param("id") id: string) {
-		return this.userService.findOne(+id);
-	}
+		const currentUser = await this.prismaService.user.findUniqueOrThrow({
+			where: {
+				id
+			}
+		});
 
-	// @Patch(":id")
-	// update(@Param("id") id: string, @Body() updateUser: UpdateUserDto) {
-	// 	return this.userService.update(+id, updateUser);
-	// }
-
-	@Delete(":id")
-	delete(@Param("id") id: string) {
-		return this.userService.delete(+id);
+		delete currentUser.password;
+		return currentUser;
 	}
 }

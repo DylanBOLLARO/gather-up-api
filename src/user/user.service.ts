@@ -28,16 +28,6 @@ export class UserService {
 		return this.prismaService.user.findUniqueOrThrow({
 			where: {
 				id
-			},
-			select: {
-				id: true,
-				firstname: true,
-				lastname: true,
-				username: true,
-				email: true,
-				created_at: true,
-				updated_at: true,
-				role: true
 			}
 		});
 	}

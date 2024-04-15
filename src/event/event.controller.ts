@@ -18,28 +18,28 @@ import { ApiTags } from "@nestjs/swagger";
 export class EventController {
 	constructor(private readonly eventService: EventService) {}
 
-	@Post()
-	@UsePipes(new CreateEventValidationPipe())
-	create(@Body() createEventDto: CreateEventDto) {
-		return this.eventService.create(createEventDto);
-	}
+	// @Post()
+	// @UsePipes(new CreateEventValidationPipe())
+	// create(@Body() createEventDto: CreateEventDto) {
+	// 	return this.eventService.create(createEventDto);
+	// }
 
-	@Get()
-	@Public()
-	findAll() {
-		return this.eventService.findAll();
-	}
+	// @Get()
+	// @Public()
+	// findAll() {
+	// 	return this.eventService.findAll();
+	// }
 
-	@Get(":id")
-	@Public()
-	@UsePipes(new ParseIntPipe())
-	findOne(@Param("id") id: number) {
-		return this.eventService.findOne(id);
-	}
+	// @Get(":id")
+	// @Public()
+	// @UsePipes(new ParseIntPipe())
+	// findOne(@Param("id") id: number) {
+	// 	return this.eventService.findOne(id);
+	// }
 
-	@Delete(":id")
-	@UsePipes(new ParseIntPipe())
-	remove(@Param("id") id: number) {
-		return this.eventService.remove(id);
-	}
+	// @Delete(":id")
+	// @UsePipes(new ParseIntPipe())
+	// remove(@Param("id") id: number) {
+	// 	return this.eventService.remove(id);
+	// }
 }
