@@ -15,7 +15,7 @@ async function bootstrap() {
 	app.useGlobalPipes(new ValidationPipe());
 
 	initSwagger(app);
-	await app.listen(8080);
+	await app.listen(3000);
 }
 bootstrap();
 
