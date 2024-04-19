@@ -1,5 +1,4 @@
 import {
-	IsBooleanString,
 	IsDateString,
 	IsNotEmpty,
 	IsNumberString,
@@ -17,23 +16,8 @@ export class CreateEventDto {
 	description: string;
 
 	@IsNotEmpty()
-	@IsBooleanString()
-	@IsOptional()
-	is_public: any;
-
-	@IsNotEmpty()
 	@IsNumberString()
-	@IsOptional()
-	duration: any;
-
-	@IsNotEmpty()
-	@IsNumberString()
-	@IsOptional()
-	user_id: any;
-
-	@IsNotEmpty()
-	@IsNumberString()
-	number_of_persons: any;
+	number_of_persons: number;
 
 	@IsNotEmpty()
 	@IsDateString()

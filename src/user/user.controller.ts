@@ -18,6 +18,7 @@ import { PrismaService } from "src/prisma/prisma.service";
 import { AtGuard } from "src/common/guards";
 import { GetCurrentUser } from "src/common/decorators";
 import { UserDto } from "./dto/user.dto";
+import { UpdateImageDto } from "./dto/update-image.dto";
 
 @ApiTags("user")
 @Controller("user")
@@ -34,7 +35,7 @@ export class UserController {
 	@ApiOperation({ summary: "Permet la modification de la photo de profile" })
 	async updatePorfileImage(
 		@GetCurrentUser() currentUserJwt: any,
-		@Body() data: any
+		@Body() data: UpdateImageDto
 	) {
 		const { sub: id } = currentUserJwt;
 		return this.userService.updatePorfileImage({ ...data, user_id: id });

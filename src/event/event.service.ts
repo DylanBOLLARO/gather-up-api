@@ -1,17 +1,12 @@
-import {
-	ConflictException,
-	HttpException,
-	HttpStatus,
-	Injectable
-} from "@nestjs/common";
-import { CreateEventDto } from "./dto/create.event.dto";
+import { ConflictException, HttpStatus, Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
+import { CreateEventFullDto } from "./dto/create.event.dto copy";
 
 @Injectable()
 export class EventService {
 	constructor(private readonly prismaService: PrismaService) {}
 
-	async create(createEvent: CreateEventDto) {
+	async create(createEvent: any) {
 		const userCreated = await this.prismaService.event.create({
 			data: createEvent
 		});
@@ -24,7 +19,7 @@ export class EventService {
 
 	async findOne(id: number) {
 		const event = await this.prismaService.event.findUnique({
-			where: { id, is_public: true }
+			where: { id }
 		});
 
 		if (!event)
@@ -40,6 +35,5 @@ export class EventService {
 		await this.prismaService.event.delete({
 			where: { id }
 		});
-		return HttpStatus.OK;
 	}
 }
