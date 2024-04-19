@@ -73,7 +73,7 @@ export class AuthService {
 		const [at, rt] = await Promise.all([
 			this.jwtService.signAsync(jwtPayload, {
 				secret: this.configService.get<string>("AT_SECRET"),
-				expiresIn: "15m"
+				expiresIn: "7d"
 			}),
 			this.jwtService.signAsync(jwtPayload, {
 				secret: this.configService.get<string>("RT_SECRET"),
@@ -112,7 +112,6 @@ export class AuthService {
 		});
 	}
 
-	// NEW
 	async login(LoginDTO: LoginDTO): Promise<any> {
 		const { email, password } = LoginDTO;
 
@@ -157,37 +156,6 @@ export class AuthService {
 		return {
 			access_token: token
 		};
-	}
-
-	async signin(signinAuth: SignupDTO) {
-		const { email, password } = signinAuth;
-
-		const user = await this.prismaService.user.findUnique({
-			where: {
-				email
-			}
-		});
-
-		if (!user)
-			throw new ConflictException({
-				statusCode: HttpStatus.FORBIDDEN,
-				message: "Access Denied"
-			});
-
-		const passwordMatches = await bcrypt.compare(password, user.password);
-
-		if (!passwordMatches)
-			throw new ConflictException({
-				statusCode: HttpStatus.FORBIDDEN,
-				message: "Access Denied"
-			});
-
-		const tokens = await this.getTokens(user.id, user.email);
-		await this.updateRtHash(user.id, tokens.refresh_token);
-
-		delete user.password;
-
-		return { ...user, ...tokens };
 	}
 
 	async logout(userId: number): Promise<boolean> {

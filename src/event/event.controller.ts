@@ -10,7 +10,11 @@ import {
 } from "@nestjs/common";
 import { EventService } from "./event.service";
 import { CreateEventDto } from "./dto/create.event.dto";
-import { Public } from "src/common/decorators";
+import {
+	GetCurrentUser,
+	GetCurrentUserId,
+	Public
+} from "src/common/decorators";
 import { CreateEventValidationPipe } from "./pipe/create.event.pipe";
 import { ApiTags } from "@nestjs/swagger";
 @ApiTags("event")
@@ -18,17 +22,22 @@ import { ApiTags } from "@nestjs/swagger";
 export class EventController {
 	constructor(private readonly eventService: EventService) {}
 
-	// @Post()
-	// @UsePipes(new CreateEventValidationPipe())
-	// create(@Body() createEventDto: CreateEventDto) {
-	// 	return this.eventService.create(createEventDto);
-	// }
+	@Post()
+	@UsePipes(new CreateEventValidationPipe())
+	create(
+		@GetCurrentUser() currentUserJwt: any,
+		@Body() createEventDto: CreateEventDto
+	) {
+		const { sub: id } = currentUserJwt;
+		console.log({ ...createEventDto, user_id: +id });
+		return this.eventService.create({ ...createEventDto, user_id: +id });
+	}
 
-	// @Get()
-	// @Public()
-	// findAll() {
-	// 	return this.eventService.findAll();
-	// }
+	@Get()
+	@Public()
+	findAll() {
+		return this.eventService.findAll();
+	}
 
 	// @Get(":id")
 	// @Public()

@@ -11,7 +11,7 @@ model Event {
   id                Int       @id @default(autoincrement())
   title             String    @db.VarChar(50)
   user_id           Int
-  is_public         Boolean   @default(false)
+  is_public         Boolean?  @default(false)
   created_at        DateTime  @default(now())
   updated_at        DateTime  @updatedAt
   start_at          DateTime?
@@ -19,6 +19,7 @@ model Event {
   address           String?
   description       String?
   duration          Int?
+  image             String?   @db.VarChar()
   number_of_persons Int?
   user              User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
@@ -35,6 +36,7 @@ model User {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   role       Role     @default(GUEST)
+  image      String?  @db.VarChar()
   hashed_rt  String?
   event      Event[]
 

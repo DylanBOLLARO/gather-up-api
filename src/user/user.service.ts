@@ -68,4 +68,15 @@ export class UserService {
 			}
 		});
 	}
+
+	async updatePorfileImage(data: any) {
+		await this.prismaService.user.update({
+			where: {
+				id: data.user_id
+			},
+			data: {
+				image: data.image
+			}
+		});
+	}
 }

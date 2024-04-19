@@ -3,7 +3,9 @@ import {
 	Get,
 	UseGuards,
 	HttpCode,
-	HttpStatus
+	HttpStatus,
+	Post,
+	Body
 } from "@nestjs/common";
 import { UserService } from "./user.service";
 import {
@@ -24,6 +26,19 @@ export class UserController {
 		private readonly userService: UserService,
 		private readonly prismaService: PrismaService
 	) {}
+
+	@Post("me/image")
+	@UseGuards(AtGuard)
+	@HttpCode(HttpStatus.OK)
+	@ApiBearerAuth()
+	@ApiOperation({ summary: "Permet la modification de la photo de profile" })
+	async updatePorfileImage(
+		@GetCurrentUser() currentUserJwt: any,
+		@Body() data: any
+	) {
+		const { sub: id } = currentUserJwt;
+		return this.userService.updatePorfileImage({ ...data, user_id: id });
+	}
 
 	@Get("me")
 	@UseGuards(AtGuard)

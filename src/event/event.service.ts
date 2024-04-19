@@ -5,7 +5,6 @@ import {
 	Injectable
 } from "@nestjs/common";
 import { CreateEventDto } from "./dto/create.event.dto";
-import { UpdateEventDto } from "./dto/update.event.dto";
 import { PrismaService } from "src/prisma/prisma.service";
 
 @Injectable()
@@ -20,9 +19,7 @@ export class EventService {
 	}
 
 	async findAll() {
-		return await this.prismaService.event.findMany({
-			where: { is_public: true }
-		});
+		return await this.prismaService.event.findMany();
 	}
 
 	async findOne(id: number) {

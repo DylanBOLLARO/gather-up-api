@@ -4,7 +4,7 @@ import { Public } from "../common/decorators";
 import { SignupDTO } from "./dto";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { LoginDTO } from "./dto/login.dto";
-import { UserDto } from "src/user/dto/user.dto";
+
 @ApiTags("auth")
 @Controller("auth")
 export class AuthController {
@@ -29,6 +29,7 @@ export class AuthController {
 		description: "Fields are missing to create the user"
 	})
 	signup(@Body() signupDTO: SignupDTO) {
+		console.log(signupDTO);
 		return this.authService.signup(signupDTO);
 	}
 
