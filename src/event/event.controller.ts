@@ -72,13 +72,18 @@ export class EventController {
 	}
 
 	@Delete(":id")
+	@ApiBearerAuth()
 	@ApiOperation({ summary: "Deleting an event" })
 	@ApiResponse({
 		status: HttpStatus.OK,
 		description: "Does not return a body, but deletes the event"
 	})
 	@UsePipes(new ParseIntPipe())
-	remove(@Param("id") id: number) {
-		return this.eventService.remove(id);
+	delete(
+		@GetCurrentUser() currentUserJwt: any,
+		@Param("id") eventId: number
+	) {
+		const { sub: userId } = currentUserJwt;
+		return this.eventService.delete(+userId, eventId);
 	}
 }

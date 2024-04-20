@@ -10,19 +10,17 @@ services:
         depends_on:
             - nestjs
     postgres:
-        container_name: postgres
+        container_name: postgres_gather_api
         image: postgres:latest
         restart: unless-stopped
         env_file:
             - .env
         ports:
-            - 16987:5432
-        volumes:
-            - postgres_data:/var/lib/postgresql/data/
+            - 16988:5432
     nestjs:
         build:
             context: .
-        container_name: nestjs
+        container_name: nestjs_gather_api
         restart: unless-stopped
         ports:
             - 8080:3000
@@ -31,14 +29,12 @@ services:
         depends_on:
             - postgres
     pgadmin:
-        container_name: pgadmin
+        container_name: pgadmin_gather_api
         image: dpage/pgadmin4:latest
         restart: unless-stopped
         env_file:
             - .env
         ports:
-            - 16543:5050
+            - 16544:5050
         depends_on:
             - nestjs
-volumes:
-    postgres_data:

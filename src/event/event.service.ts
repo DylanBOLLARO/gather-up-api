@@ -31,9 +31,20 @@ export class EventService {
 		return event;
 	}
 
-	async remove(id: number) {
+	async delete(userId: number, eventId: number) {
+		const { user_id } = await this.prismaService.event.findUnique({
+			where: { id: eventId }
+		});
+
+		if (user_id != userId) {
+			throw new ConflictException({
+				statusCode: HttpStatus.UNAUTHORIZED,
+				message: "Access Denied"
+			});
+		}
+
 		await this.prismaService.event.delete({
-			where: { id }
+			where: { id: eventId }
 		});
 	}
 }
